@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title> 
+    <link rel="stylesheet" href="/static/css/staff_dash_style.css">
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/Logo.png" alt="Brand Logo">
+            <span>Trekking Management System</span>
+        </div>
+
+        <div class="admin">
+            <img src="/static/images/profile logo.png" alt="profile logo"> Welcome, {{staff_name}}
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h3>MENU</h3>
+            <a class="{% if page == 'dash'%}high_side{% endif %}" href="/staff_dash">
+                <img src="/static/images/dash logo.png" alt="dashboard logo">
+                <div>Dashboard</div>
+            </a>
+            <a class="{% if page == 'treks'%}high_side{% endif %}" href="/staff_treks">
+                <img src="/static/images/manage treks logo.png" alt="My treks logo">
+                <div>My Treks</div>
+            </a>
+            <a class="{% if page == 'participants'%}high_side{% endif %}" href="/staff_participants">
+                <img src="/static/images/participants logo.png" alt="Staff participants logo">
+                <div>Participants</div>
+            </a>
+            <a class="{% if page == 'profile'%}high_side{% endif %}" href="/staff_profile">
+                <img src="/static/images/profile logo.png" alt="profile logo">
+                <div>Profile</div>
+            </a>
+            <a href="/logout" class="logout">
+                <img src="/static/images/logout logo.png" alt="logout logo">
+                <div>Logout</div>
+            </a>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

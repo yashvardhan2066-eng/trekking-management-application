@@ -1,0 +1,52 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+User Profile Edit
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>User Profile</h1>
+        <form method="POST" class="glass-card-form">
+            <div class="profile-form">
+                <div class="profile-row">
+                    <label>Name:</label>
+                    <input name="fullname" type="text" value="{{user[2]}}" required>
+                </div>
+                <div class="profile-row">
+                    <label>Address:</label>
+                    <input name="address" type="text" value="{{user[3]}}" required>
+                </div>
+                <div class="profile-row">
+                    <label>Gender:</label>
+                    <select name="gender" required>
+                        <option value="Male" {% if user[4] == 'Male' %} selected {% endif %}>
+                            Male
+                        </option>
+                        <option value="Female" {% if user[4] == 'Female' %} selected {% endif %}>
+                            Female
+                        </option>
+                    </select>
+                </div>
+                <div class="profile-row">
+                    <label>Email:</label>
+                    <input name="email" type="email"value="{{user[5]}}" required>
+                </div>
+
+                <div class="profile-row">
+                    <label>Phone:</label>
+                    <input name="phone" type="tel" value="{{user[6]}}" required>
+                </div>
+                <div class="profile-row">
+                    <label>Username:</label>
+                    <input name="username" type="text" value="{{user[7]}}" required>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

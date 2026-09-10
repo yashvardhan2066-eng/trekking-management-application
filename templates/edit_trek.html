@@ -1,0 +1,98 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Edit trek
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Edit Trek</h1>
+        <form class="add_trek" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Trek Name:</label>
+                    <input type="text" name="trek_name" placeholder="Enter Trek Name" value="{{trek[1]}}" required>
+                </div>
+                <div class="form-grp">
+                    <label>Location:</label>
+                    <input type="text" name="location" placeholder="Enter Location" value="{{trek[2]}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Difficulty:</label>    
+                    <select name="difficulty" required>
+                        <option value="Easy"
+                            {% if trek[3] == "Easy" %}selected{% endif %}>
+                            Easy
+                        </option>
+                        <option value="Moderate"
+                            {% if trek[3] == "Moderate" %}selected{% endif %}>
+                            Moderate
+                        </option>
+                        <option value="Hard"
+                            {% if trek[3] == "Hard" %}selected{% endif %}>
+                            Hard
+                        </option>
+                    </select>
+                </div>
+                <div class="form-grp">
+                    <label>Duration (Days):</label>
+                    <input type="number" name="duration" placeholder="Enter Number of Days" value="{{trek[4]}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Start Date:</label>
+                    <input type="date" name="start_date" value="{{trek[5]}}" required>
+                </div>
+                <div class="form-grp">
+                    <label>End Date:</label>
+                    <input type="date" name="end_date" value="{{trek[6]}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Total Slots:</label>
+                    <input type="number" name="total_slots" placeholder="Enter Number of Slots" value="{{trek[7]}}" required>
+                </div>
+                <div class="form-grp">
+                    <label>Status:</label>
+                    <select name="status" id="" value="{{trek[9]}}" required>
+                        <option value="Open" {% if trek[9]=="Open" %}selected{% endif %}>Open</option>
+                        <option value="Closed" {% if trek[9]=="Closed" %}selected{% endif %}>Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Assigned Staff:</label>
+                    <select name="staff_id" required>
+                        <option value="">Assign Later</option>
+                        {% for member in staff %}
+                            <option value="{{ member[0] }}"{% if member[0] == trek[12] %}selected{% endif %}>
+                                ID: {{ member[0] }} - {{ member[1] }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-grp">
+                    <label>Upload Image:</label>
+                    <input type="file" name="image" placeholder="Upload Image" accept=".jpg,.jpeg,.png" >
+                </div>
+            </div>
+            <div class="form-grp">
+                <label>Description:</label>
+                <textarea name="description" placeholder="Briefly describe the trek...">{{trek[10]}}</textarea>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="add-btn">
+                    Save Changes
+                </button>
+                <a href="/manage_treks" class="cancel-btn">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

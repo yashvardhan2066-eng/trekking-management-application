@@ -1,0 +1,58 @@
+{% extends "base_admin.html" %}
+
+{% block title%}
+Manage Bookings
+{% endblock %}
+
+{% block content %}
+<div class="glass-card">
+    <h1>Manage Bookings</h1>
+    <div class="top-bar1">
+        <form method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+            <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+            {% if search %}
+            <a href="/manage_bookings" class="clear-btn">Clear</a>       
+            {% endif %}
+            
+        </form>
+    </div>
+    <div class="table-wrapper">
+        <table class="bookings-table">
+            <tr>
+                <th>Booking ID</th>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>Trek ID</th>
+                <th>Trek Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Booking State</th>
+                <th>Booking State Date</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{booking[0]}}</td>
+                <td>{{booking[1]}}</td>
+                <td>{{booking[2]}}</td>
+                <td>{{booking[3]}}</td>
+                <td>{{booking[4]}}</td>
+                <td>{{ booking[5] | format_date}} <br>{{ booking[5] | format_time}}</td>
+                <td>{{booking[6]}}</td>
+                <td>
+                    {% if booking[7] == "Completed" %}
+                    <span class="status completed">Completed</span>
+                    {% elif booking[7] == "Active"%}
+                    <span class="status active1">Active</span>
+                    {% else %}
+                    <span class="status cancelled">Cancelled</span>
+                    {% endif %}
+                </td>
+                
+                <td>{{ booking[8] | format_date}} <br>{{ booking[8] | format_time}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

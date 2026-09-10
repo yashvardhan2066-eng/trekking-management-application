@@ -1,0 +1,36 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+Book Treks
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <form method="POST" class="glass-card-form">
+            <h1>Trek Information: </h1>
+            <div class="trek-info">
+                <div class="trek-box-1">
+                    <img src="/static/images/{{trek[11]}}" alt="{{trek[1]}}" class="trek-image">
+                </div>
+                <div class="trek-box-2">
+                    <h2>{{trek[1]}}</h2>
+
+                    <p><strong>Location:</strong> {{trek[2]}}</p>
+                    <p><strong>Difficulty:</strong> {{trek[3]}}</p>
+                    <p><strong>Duration:</strong> {{trek[4]}} Days</p>
+                    <p><strong>Start Date:</strong> {{trek[5] | format_date}}</p>
+                    <p><strong>End Date:</strong> {{trek[6] | format_date}}</p>
+                    <p><strong>Available Slots:</strong> {{trek[8]}}</p>
+                </div>
+            </div>
+            <div class="trek-description">
+                <h3>Description: </h3>
+                <p>{{trek[10]}}</p>
+            </div>
+            <div class="button-group">
+                <a href="/user_book_treks" class="back-btn">Back</a>
+                <button type="submit" class="save-btn">
+                    Confirm Booking
+                </button>
+            </div>
+{% endblock %}

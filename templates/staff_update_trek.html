@@ -1,0 +1,69 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Trek Update
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <form method="POST" class="glass-card-form">
+            <h1>{{treks_table[1]}}</h1>
+            <div class="form-row">
+                <div class="form-grp">Location:</div>          
+                <div class="form-grp">{{treks_table[2]}}</div>
+                <div class="form-grp">Difficulty:</div>
+                <div class="form-grp">{{treks_table[3]}}</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-grp">Start Date:</div> 
+                <div class="form-grp">{{treks_table[5] | format_date}}</div>
+                <div class="form-grp">Duration:</div> 
+                <div class="form-grp">{{treks_table[4]}} Days</div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">End Date: </div>
+                <div class="form-grp"> {{treks_table[6] | format_date}}</div>
+                <div class="form-grp">Total Slots:</div>
+                <div class="form-grp"> 
+                    <input 
+                    type="number" name="total_slots" class="update_trek"
+                    placeholder="Enter Number of Slots" value="{{treks_table[7]}}" 
+                    {% if treks_table[13] != "Not Started" %}disabled{% endif %}
+                    required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">Available Slots:</div>
+                <div class="form-grp">{{treks_table[8]}}</div>
+                <div class="form-grp">Status:</div>
+                <div class="form-grp"> 
+                    <select name="status" class="update_trek" {% if treks_table[13] != "Not Started" %}disabled{% endif %}  required>
+                        <option value="Open" {% if treks_table[9]=="Open" %}selected{% endif %}>Open</option>
+                        <option value="Closed" {% if treks_table[9]=="Closed" %}selected{% endif %}>Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">Description:   {{treks_table[10]}}</div> 
+            </div>
+            <div class="form-buttons">
+                {% if treks_table[13] == "Not Started" %}
+                <a href="/update_trek_started/{{treks_table[0]}}" class="start-cancel-btn">
+                    Trek Started
+                </a>
+                {% endif %}
+                {% if treks_table[13] == "Started" %}
+                <a href="/update_trek_completed/{{treks_table[0]}}" class="cmplt-cancel-btn">
+                    Trek Completed
+                </a>
+                {% endif %}
+                {% if treks_table[13] == "Not Started" %}
+                <button type="submit" class="save-btn" >
+                    Save Changes
+                </button>
+                {% endif %}
+            </div>
+        </form>
+    </div> 
+{% endblock %}

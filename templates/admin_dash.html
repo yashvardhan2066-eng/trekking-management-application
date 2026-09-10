@@ -1,0 +1,68 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">   
+        <h1>Admin Dashboard</h1>
+        <div class="dashboard-cards">
+            <div class="dash-card">
+                <h3>Total Staff</h3>
+                <h2>{{ staff_count }}</h2>
+            </div>
+            <div class="dash-card">
+                <h3>Total Users</h3>
+                <h2>{{ user_count }}</h2>
+            </div>
+            <div class="dash-card">
+                <h3> Total Treks</h3>
+                <h2>{{ trek_count }}</h2>
+            </div>
+            <div class="dash-card">
+                <h3>Total Bookings</h3>
+                <h2>{{ booking_count }}</h2>
+            </div>
+        </div>
+        <div class="dashboard-overview">
+            <div class="overview-box">
+                <h2>Treks Overview</h2>
+                <div class="overview-items">
+                    <div class="overview-item">
+                        <h3>Not Started</h3>
+                        <p>{{not_started_count}}</p>
+                    </div>
+                    <div class="overview-item">
+                        <h3>Started</h3>
+                        <p>{{started_count}}</p>
+                    </div>
+                    <div class="overview-item">
+                        <h3>Completed</h3>
+                        <p>{{completed_count}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-box">
+                <h2>Bookings Overview</h2>
+                <div class="overview-items">
+                    <div class="overview-item">
+                        <h3>Active</h3>
+                        <p>{{active_count}}</p>
+                    </div>
+                    <div class="overview-item">
+                        <h3>Completed</h3>
+                        <p>{{completed_booking_count}}</p>
+                    </div>
+                    <div class="overview-item">
+                        <h3>Cancelled</h3>
+                        <p>{{cancelled_count}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+    

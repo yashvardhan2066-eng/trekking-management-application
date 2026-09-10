@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="/static/css/all_log_style.css">
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/Logo.png" alt="Brand Logo">
+            <span>Trekking Management System</span>
+        </div>
+        <div class="nav-links">
+            <a href="/"><img src="/static/images/Home logo.png" alt="Home logo">Home</a>
+            <a href="/login"><img src="/static/images/Login logo.png" alt="Login logo">Login</a>
+            <a href="/register"><img src="/static/images/Register logo.png" alt="Register Logo">Register</a>
+        </div>
+    </div>
+    <div class="content">
+        <form class="login-box" method="POST">
+            <h1>Staff Login</h1>
+
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter your username" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit"><b>Login</b></button>
+            <div>Don't have an account? <a href="/register" class="register_link">Click here</a></div>
+        </form>
+    </div>
+    <footer>
+
+        © 2026 Trekking Management System
+
+    </footer>
+</body>
+</html>

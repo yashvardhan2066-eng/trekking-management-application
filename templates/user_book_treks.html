@@ -1,0 +1,51 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+Book Treks
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Available Treks</h1>
+        <div class="top-bar">
+            <div class="status_button">
+                <a href="/user_book_treks" class="blue">All</a>
+                <a href="/user_book_treks/easy" class="green">Easy</a>
+                <a href="/user_book_treks/moderate" class="yellow">Moderate</a>
+                <a href="/user_book_treks/hard" class="red">Hard</a>
+            </div>
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/user_book_treks" class="clear-btn">Clear</a>    
+                {% endif %}
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Difficulty</th>
+                <th>Duration</th>
+                <th>Start Date</th>
+                <th>Available Slots</th>
+                <th>Actions</th>
+            </tr>
+            {% for trek in treks %}
+            <tr>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2]}}</td>
+                <td>{{trek[3]}}</td>
+                <td>{{trek[4]}} Days</td>
+                <td>{{trek[5] | format_date}}</td>
+                <td>{{trek[8]}}</td>
+                <td>
+                    <a href="/user_trek_booking/{{trek[0]}}" class="update-btn">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+    </div>
+{% endblock %}

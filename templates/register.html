@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/register_style.css">
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/Logo.png" alt="Brand Logo">
+            <span>Trekking Management System</span>
+        </div>
+        <div class="nav-links">
+            <a href="/"><img src="/static/images/Home logo.png" alt="Home logo">Home</a>
+            <a href="/login"><img src="/static/images/Login logo.png" alt="Login logo">Login</a>
+            <a href="/register"><img src="/static/images/Register logo.png" alt="Register Logo">Register</a>
+        </div>
+    </div>
+    <div class="register-box">
+        <form class="register-box1" method="POST">
+            <h1>Register</h1>
+            <label>Register As:</label>
+            <div class="role_radio">
+                <label>
+                    <input type="radio" name="role" value="User" required>
+                    User
+                </label>
+                <label>
+                    <input type="radio" name="role" value="Staff" required>
+                    Staff
+                </label>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Full Name:</label>
+                    <input type="text" name="fullname" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-grp">
+                    <label>Gender:</label>
+                    <select name="gender" required>
+                        <option value="" selected disabled>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Email:</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-grp">
+                    <label>Phone Number:</label>
+                    <input type="tel" name="phone" placeholder="Enter your phone number" required>
+                </div>
+            </div>
+
+            <label>Address:</label>
+            <input type="text" name="address" placeholder="Enter your address" required>
+            
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter your username" required>
+            
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Password:</label>
+                    <input type="password" name="password" placeholder="Enter your password" required>    
+                </div>
+                <div class="form-grp">
+                    <label>Confirm Password:</label>
+                    <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+            </div> 
+            <button type="submit"><b>Register</b></button>
+        </form>
+    </div>
+    <footer>
+
+        © 2026 Trekking Management System
+
+    </footer>
+</body>
+</html>

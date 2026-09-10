@@ -1,0 +1,41 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Participants
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Participants</h1>
+        <div class="top-bar1">
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/staff_participants" class="clear-btn">Clear</a>    
+                {% endif %}
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Participants</th>
+                <th>Action</th>
+            </tr>
+            {% for trek in treks %}
+            <tr>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2]}}</td>
+                <td>{{trek[3] | format_date}}</td>
+                <td>{{trek[4]}}</td>
+                <td>
+                    <a href="/staff_participants_view/{{trek[0]}}" class="update-btn">
+                        View Participants
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

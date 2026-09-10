@@ -1,0 +1,77 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Manage Staff
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Manage Staff</h1>
+        <div class="top-bar">
+            <div class="status_button"> 
+                <a href="/manage_staff" class="blue">All</a>
+                <a href="/manage_staff/active" class="green">Active</a>
+                <a href="/manage_staff/pending" class="yellow">Pending</a>
+                <a href="/manage_staff/rejected" class="red">Rejected</a>
+                <a href="/manage_staff/blacklisted" class="black">Blacklisted</a>
+            </div>
+            <div>
+                <form method="GET" class="search-form">
+                    <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                    <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                    {% if search %}
+                    <a href="/manage_staff" class="clear-btn">Clear</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="mngestaff_table">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in staff %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[7] }}</td>
+                    <td>{{ user[5] }}</td>
+                    <td>{{ user[6] }}</td>
+                    <td>
+                        {% if user[9] == "pending"%}
+                        <span class="status pending">Pending</span>
+                        {% elif user[9] == "active"%}
+                        <span class="status active">Active</span>
+                        {% elif user[9] == "blacklisted"%}
+                        <span class="status blacklisted">Blacklisted</span>
+                        {% elif user[9] == "rejected"%}
+                        <span class="status rejected">Rejected</span>        
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="staff_id" value="{{ user[0] }}">
+                            <div class="action-buttons">   
+                                {% if user[9] == 'pending' %}
+                                <button class="approve" type="submit" name="action" value="active">Approve</button>
+                                <button class="reject" type="submit" name="action" value="rejected">Reject</button>
+                                {% elif user[9] == 'active' %}
+                                <button class="blacklist" type='submit' name="action" value="blacklisted">Blacklist</button>
+                                {% elif user[9] == 'blacklisted' %}
+                                <button class="activate" type='submit' name="action" value="active">Activate</button>
+                                {% elif user[9] == 'rejected' %}
+                                <button class="approve" type='submit' name="action" value="active">Approve</button>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Profile
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Staff Profile</h1>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">ID: </label>
+            <div class="prof-form-grp">{{user[0]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Name: </label>
+            <div class="prof-form-grp">{{user[2]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Address: </label>
+            <div class="prof-form-grp">{{user[3]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Gender: </label>
+            <div class="prof-form-grp">{{user[4]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Email: </label>
+            <div class="prof-form-grp">{{user[5]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Phone: </label>
+            <div class="prof-form-grp">{{user[6]}}</div>
+        </div>
+        <div class="prof-form-row">
+            <label class="prof-form-grp">Username: </label>
+            <div class="prof-form-grp">{{user[7]}}</div>
+        </div>
+        <div class="form-buttons">
+            <a href="/staff_prof_edit" class="edit-btn">
+                Edit
+            </a>
+        </div>
+    </div>   
+{% endblock %}

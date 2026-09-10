@@ -1,0 +1,77 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Manage treks
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <div class="treks-header">
+            <h1>Manage Treks</h1>
+        </div>
+        <div class="top-bar">
+            <a href="/add_trek" class="add-btn">+ Add Trek</a>
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/manage_treks" class="clear-btn">Clear</a>    
+                {% endif %}
+                
+            </form>
+        </div>
+        <div class="table-wrapper">
+            <table class="treks-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Trek Name</th>
+                    <th>Location</th>
+                    <th>Difficulty</th>
+                    <th>Duration</th>
+                    <th>Dates</th>
+                    <th>Available Slots</th>
+                    <th>Staff Name</th>
+                    <th>Trek State</th>
+                    <th>Action</th>
+                </tr>
+                {% for trek in treks %}
+                <tr>
+                    <td>{{trek[0]}}</td>
+                    <td>{{trek[1]}}</td>
+                    <td>{{trek[2]}}</td>
+                    <td>{{trek[3]}}</td>
+                    <td>{{trek[4]}}D</td>
+                    <td>{{trek[5] | format_date}}
+                        <br>to <br> 
+                        {{trek[6] | format_date}}</td>
+                    <td>{{trek[8]}} / {{trek[7]}}</td>
+                    <td>
+                        {% if trek[14] %}
+                            {{trek[12]}} - {{trek[14]}}
+                        {% else %}
+                            Not Assigned
+                        {% endif %}
+                    </td>
+                    <td>{{trek[13]}}</td>
+                    <td>
+                        {% if trek[13] == "Not Started" %}
+                        <div class="action-buttons">
+                            <a href="/edit_trek/{{ trek[0] }}" class="edit-btn">
+                                Edit
+                            </a>
+
+                            <a href="/delete_trek/{{ trek[0] }}" class="delete-btn">
+                                Delete
+                            </a>
+                        </div> 
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </table>
+        </div>      
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Treks
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Assigned Treks</h1>
+        <div class="top-bar1">
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/staff_treks" class="clear-btn">Clear</a>    
+                {% endif %}
+                
+            </form>
+        </div>
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>Available Slots</th>
+                <th>Status</th>
+                <th>Trek State</th>
+                <th>Action</th>
+            </tr>
+            {% for trek in treks%}
+            <tr>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2]}}</td>
+                <td>{{trek[3]| format_date}}</td>
+                <td>{{trek[4]}}</td>
+                <td>{% if trek[5] == "Open" %}
+                    <div class="green">{{trek[5]}}</div>
+                    {% else %}
+                    <div class="red">{{trek[5]}}</div>
+                    {% endif %}
+                </td>
+                <td>{{trek[6]}}</td>
+                <td>
+                    <a href="/staff_update_trek/{{trek[0]}}" class="update-btn">
+                        Update
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+{% endblock %}

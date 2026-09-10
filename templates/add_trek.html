@@ -1,0 +1,96 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Add trek
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Add Trek</h1>
+        <form class="add_trek" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Trek Name:</label>
+                    <input type="text" name="trek_name" placeholder="Enter Trek Name" required>
+                </div>
+                <div class="form-grp">
+                    <label>Location:</label>
+                    <input type="text" name="location" placeholder="Enter Location" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Difficulty:</label>
+                    <select name="difficulty" id="" required>
+                        <option value="" disabled selected>Select Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="form-grp">
+                    <label>Duration (Days):</label>
+                    <input type="number" name="duration" placeholder="Enter Number of Days" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Start Date:</label>
+                    <input type="date" name="start_date" required>
+                </div>
+                <div class="form-grp">
+                    <label>End Date:</label>
+                    <input type="date" name="end_date" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Total Slots:</label>
+                    <input type="number" name="total_slots" placeholder="Enter Number of Slots" required>
+                </div>
+                <div class="form-grp">
+                    <label>Status:</label>
+                    <select name="status" id="" required>
+                        <option value="" selected disabled>Select Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-grp">
+                    <label>Staff:</label>
+                    <select name="staff_id" required>
+                        <option value="" disabled selected>Select Staff</option>
+                        <option value="">Assign Later</option>
+                        {% for member in staff %}
+                            <option value="{{ member[0] }}">
+                                ID: {{ member[0] }} - {{ member[1] }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-grp">
+                    <label>Upload Image:</label>
+                    <input type="file" name="image" placeholder="Upload Image" accept=".jpg,.jpeg,.png" required>
+                </div>
+            </div>
+            <div class="form-grp">
+                <label>Description:</label>
+                <textarea
+                    name="description"
+                    rows="2"
+                    placeholder="Briefly describe the trek...">
+                </textarea>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="add-btn">
+                    Add Trek
+                </button>
+                <a href="/manage_treks" class="cancel-btn">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

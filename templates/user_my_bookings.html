@@ -1,0 +1,48 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+My Bookings
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>My Bookings</h1>
+        <div class="top-bar1">
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/user_my_bookings" class="clear-btn">Clear</a>    
+                {% endif %}
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Booking ID</th>
+                <th>Booking Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{booking[0]}}</td>
+                <td>{{booking[1]}}</td>
+                <td>{{booking[2]}}</td>
+                <td>{{booking[3] | format_date}} <br>{{booking[3] | format_time}} </td>
+                <td>
+                    {% if booking[4] == 'Active' %}
+                        Booked
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/user_booking_details/{{booking[2]}}" class="update-btn">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

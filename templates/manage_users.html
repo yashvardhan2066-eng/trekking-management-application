@@ -1,0 +1,60 @@
+{% extends "base_admin.html" %}
+
+{% block title%}
+Manage Users
+{% endblock %}
+
+{% block content %}
+<div class="glass-card">
+    <h1>Manage Users</h1>
+    <div class="top-bar1">
+        <form method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+            <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+            {% if search %}
+            <a href="/manage_users" class="clear-btn">Clear</a>        
+            {% endif %}
+            
+        </form>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{user[0]}}</td>
+                <td>{{user[1]}}</td>
+                <td>{{user[2]}}</td>
+                <td>{{user[3]}}</td>
+                <td>{{user[4]}}</td>
+                <td>
+                    {% if user[5] == "active" %}
+                    <span class="status active">Active</span>
+                    {% elif user[5] == "blacklisted" %}
+                    <span class="status blacklisted">Blacklisted</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="user_id" value="{{user[0]}}">
+                        {% if user[5] == "active" %}
+                        <button class="blacklist" name="action" value="blacklisted">Blacklist</button>       
+                        {% else %}
+                        <button class="active-btn" name="action" value="active">Activate</button>
+                        {% endif %}
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

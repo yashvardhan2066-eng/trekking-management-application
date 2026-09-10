@@ -1,0 +1,54 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="glass-card">   
+        <h1>Staff Dashboard</h1>
+        <!-- <p>Welcome to Trekking Management System.</p> -->
+        <div class="dashboard-cards">
+            <div class="dash-card">
+                <h3>Assigned Treks</h3>
+                <h2>{{assigned_treks}}</h2>
+            </div>
+            <div class="dash-card">
+                <h3>Participants</h3>
+                <h2>{{participants}}</h2>
+            </div>
+            <div class="dash-card">
+                <h3>Open Treks</h3>
+                <h2>{{open_treks}}</h2>
+            </div>
+        </div>
+        <h2>Recent Assigned Treks</h2>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Participants</th>
+                <th>Trek State</th>
+            </tr>
+            {% for trek in treks_table %}
+            <tr>
+                <td>{{trek[0]}}</td>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2] | format_date}}</td>
+                <td>{{trek[3] | format_date}}</td>
+                <td>{% if trek[4] == "Open" %}
+                    <div class="green">{{trek[4]}}</div>
+                    {% else %}
+                    <div class="red">{{trek[4]}}</div>
+                    {% endif %}
+                </td>
+                <td>{{trek[5]}}</td>
+                <td>{{trek[6]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

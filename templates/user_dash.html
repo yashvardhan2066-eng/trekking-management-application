@@ -1,0 +1,74 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>Welcome, {{user_name}}!</h1>
+        <h2>Upcoming Treks</h2>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Difficulty</th>
+                <th>Duration</th>
+                <th>Start Date</th>
+                <th>Available Slots</th>
+                <th>Actions</th>
+            </tr>
+            {% for trek in treks %}
+            <tr>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2]}}</td>
+                <td>{{trek[3]}}</td>
+                <td>{{trek[4]}} Days</td>
+                <td>{{trek[5] | format_date}}</td>
+                <td>{{trek[8]}}</td>
+                <td>
+                    <a href="/user_trek_booking/{{trek[0]}}" class="update-btn">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="view_more">
+            <a href="/user_book_treks">+ View More</a>
+        </div>
+        <h2>My Bookings</h2>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Booking ID</th>
+                <th>Booking Date</th>
+                <th>Status</th>
+                <th>Trek State</th>
+                <th>Actions</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{booking[0]}}</td>
+                <td>{{booking[1]}}</td>
+                <td>{{booking[2]}}</td>
+                <td>{{booking[3] | format_date}} <br>{{booking[3] | format_time}}</td>
+                <td>
+                    {% if booking[4] == 'Active' %}
+                        Booked
+                    {% endif %}
+                </td>
+                <td>{{booking[5]}}</td>
+                <td>
+                    <a href="/user_booking_details/{{booking[2]}}" class="update-btn">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>    
+
+    
+{% endblock %}

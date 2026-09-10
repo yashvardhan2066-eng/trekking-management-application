@@ -1,0 +1,34 @@
+{% extends "base_admin.html" %}
+
+{% block title %}
+Delete Trek
+{% endblock %}
+
+{% block content %}
+<div class="glass-card">
+
+    <h1>Delete Trek</h1>
+
+    <p class="warning">
+        ⚠️ Are you sure you want to delete this trek?
+    </p>
+
+    <div class="trek-info">
+        <h2>{{ trek[1] }}</h2>
+        <p><strong>Location:</strong> {{ trek[2] }}</p>
+        <p><strong>Difficulty:</strong> {{ trek[3] }}</p>
+        <p><strong>Duration:</strong> {{ trek[4] }} Days</p>
+    </div>
+
+    <form method="POST" class="delete-buttons">
+        <button type="submit" class="confirm-delete-btn">
+            Delete
+        </button>
+
+        <a href="/manage_treks" class="cancel-btn">
+            Cancel
+        </a>
+    </form>
+
+</div>
+{% endblock %}

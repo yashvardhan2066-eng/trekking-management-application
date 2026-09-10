@@ -1,0 +1,36 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h1>User Profile</h1>
+        <div class="trek-info">
+            <div class="trek-box-1">
+                <p><strong>ID:</strong></p>
+                <p><strong>Name:</strong></p>
+                <p><strong>Address:</strong></p>
+                <p><strong>Gender:</strong></p>
+                <p><strong>Email:</strong></p>
+                <p><strong>Phone:</strong></p>
+                <p><strong>Username:</strong></p>
+            </div>
+            <div class="trek-box-2">
+                <p>{{user[0]}}</p>
+                <p>{{user[2]}}</p>
+                <p>{{user[3]}}</p>
+                <p>{{user[4]}}</p>
+                <p>{{user[5]}}</p>
+                <p>{{user[6]}}</p>
+                <p>{{user[7]}}</p>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="/user_prof_edit" class="edit-btn">
+                Edit
+            </a>
+        </div>
+    </div>   
+{% endblock %}

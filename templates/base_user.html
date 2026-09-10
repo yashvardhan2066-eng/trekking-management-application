@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title> 
+    <link rel="stylesheet" href="/static/css/user_dash_style.css">
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/Logo.png" alt="Brand Logo">
+            <span>Trekking Management System</span>
+        </div>
+
+        <div class="admin">
+            <img src="/static/images/profile logo.png" alt="profile logo"> Welcome, {{user_name}}
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h3>MENU</h3>
+            <a class="{% if page == 'dash'%}high_side{% endif %}" href="/user_dash">
+                <img src="/static/images/dash logo.png" alt="dashboard logo">
+                <div>Dashboard</div>
+            </a>
+            <a class="{% if page == 'treks'%}high_side{% endif %}" href="/user_book_treks">
+                <img src="/static/images/manage treks logo.png" alt="Book treks logo">
+                <div>Book Treks</div>
+            </a>
+            <a class="{% if page == 'bookings'%}high_side{% endif %}" href="/user_my_bookings">
+                <img src="/static/images/manage bookings logo.png" alt="My bookings logo">
+                <div>My Bookings</div>
+            </a>
+            <a class="{% if page == 'booking_history'%}high_side{% endif %}" href="/user_booking_history">
+                <img src="/static/images/booking history logo.png" alt="Book history logo">
+                <div>Booking History</div>
+            </a>
+            <a class="{% if page == 'profile'%}high_side{% endif %}" href="/user_profile">
+                <img src="/static/images/profile logo.png" alt="Profile logo">
+                <div>Profile</div>
+            </a>
+            <a href="/logout" class="logout">
+                <img src="/static/images/logout logo.png" alt="">
+                <div>Logout</div>
+            </a>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

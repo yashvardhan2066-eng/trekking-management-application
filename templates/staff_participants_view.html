@@ -1,0 +1,54 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Particiants
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h2>Trek Details</h2>
+        <table>
+            <tr>
+                <th>Trek Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>End Date</th>
+            </tr>
+            <tr>
+                <td>{{trek[0]}}</td>
+                <td>{{trek[1]}}</td>
+                <td>{{trek[2] | format_date}}</td>
+                <td>{{trek[3] | format_date}}</td>
+            </tr>
+        </table>
+        
+        <div class="top-bar">
+            <h2>Participants Details</h2>
+            <form method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Search" value="{{request.args.get('search','')}}">
+                <button type="submit"><img src="/static/images/search icon.png" alt="search icon"></button>
+                {% if search %}
+                <a href="/staff_participants_view/{{trek_id}}" class="clear-btn">Clear</a>    
+                {% endif %}
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Booking Date</th>
+            </tr>
+            {% for person in participants %}
+            <tr>
+                <td>{{person[0]}}</td>
+                <td>{{person[1]}}</td>
+                <td>{{person[2]}}</td>
+                <td>{{person[3]}}</td>
+                <td>{{person[4] | format_date}} {{person[4] | format_time}}</td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+{% endblock %}

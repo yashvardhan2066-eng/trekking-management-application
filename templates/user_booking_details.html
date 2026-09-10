@@ -1,0 +1,35 @@
+{% extends "base_user.html" %}
+
+{% block title %}
+My Booking Details
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <form method="POST" class="glass-card-form">
+            <h1>Booking Details</h1>
+            <div class="trek-info">
+                <div class="trek-box-1">
+                    <p><strong>Trek Name:</strong></p>
+                    <p><strong>Location:</strong></p>
+                    <p><strong>Booking ID:</strong></p>
+                    <p><strong>Booking Date:</strong></p>
+                    <p><strong>Status:</strong></p>
+                </div>
+                <div class="trek-box-2">
+                    <p>{{booking[0]}}</p>
+                    <p>{{booking[1]}}</p>
+                    <p>{{booking[2]}}</p>
+                    <p>{{booking[3] | format_date}} {{booking[3] | format_time}}</p>
+                    <p>{{booking[4]}}</p>
+                </div>
+            </div>
+            <div class="button-group">
+                <a href="/user_my_bookings" class="back-btn">
+                    Back    
+                </a>
+                <button type="submit" class="cancel-btn">Cancel Booking</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base_staff.html" %}
+
+{% block title %}
+Staff Profile Edit
+{% endblock %}
+
+{% block content %}
+    <div class="glass-card">
+        <h2>Staff Profile</h2>
+        <form method="POST" class="glass-card-form">
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Name: </label>
+                <input class="prof-form-grp" name="fullname" type="text" value="{{user[2]}}" placeholder="Enter name" required>
+            </div>
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Address: </label>
+                <input class="prof-form-grp" name="address" type="text" value="{{user[3]}}" placeholder="Enter address" required>
+            </div>
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Gender: </label>
+                <select class="prof-form-grp" name="gender" required>
+                    <option value="Male" {% if user[4] == 'Male' %} selected {% endif %}>Male</option>
+                    <option value="Female" {% if user[4] == 'Female' %} selected {% endif %}>Female</option>    
+                </select>
+            </div>
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Email: </label>
+                <input class="prof-form-grp" name="email" type="email" value="{{user[5]}}" placeholder="Enter email" required>
+            </div>
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Phone: </label>
+                <input class="prof-form-grp" name="phone" type="tel" value="{{user[6]}}" placeholder="Enter phone" required>
+            </div>
+            <div class="prof-form-row">
+                <label class="prof-form-grp">Username: </label>
+                <input class="prof-form-grp" name="username" type="text" value="{{user[7]}}" placeholder="Enter username" required>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
